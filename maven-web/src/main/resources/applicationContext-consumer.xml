@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	
+	<!-- 使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry address="${zookeeper.address}" check="false" file="dubbo.properties"> </dubbo:registry>
+	<!-- 要引用的服务 -->
+	<dubbo:reference
+		interface="cn.vko.studycenter.service.remote.UserStudyTrackServiceRemote"
+		url="${study.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="userStudyTrackServiceRemote" />
+		
+	<dubbo:reference
+		interface="cn.vko.studycenter.service.remote.UserEvaluationServiceRemote"
+		url="${study.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="userEvaluationServiceRemote" />
+	<dubbo:reference
+		interface="cn.vko.studycenter.service.remote.TrainingCourseServiceRemote"
+		url="${study.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="trainingCourseServiceRemote" />
+	<dubbo:reference
+		interface="cn.vko.studycenter.service.remote.UserGradeConfigServiceRemote"
+		url="${study.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="userGradeConfigServiceRemote" />
+	<dubbo:reference
+		interface="cn.vko.studycenter.service.remote.QrCodeServiceRemote"
+		url="${study.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="qrCodeServiceRemote" />
+		
+	<dubbo:reference 
+		interface="cn.vko.tiku.service.remote.ChapterServiceRemote" 
+		url="${tiku.dubbo.url}" version="1.0" timeout="20000" check="false" 
+		id="chapterServiceRemote" />
+	<dubbo:reference 
+		interface="cn.vko.cms.service.remote.GroupsServiceRemote" 
+		url="${video.dubbo.url}" version="1.0" timeout="20000" check="false" 
+		id="groupsServiceRemote" />
+		<dubbo:reference 
+		interface="cn.vko.cms.service.remote.GroupsTagsServiceRemote" 
+		url="${video.dubbo.url}" version="1.0" timeout="20000" check="false" 
+		id="groupsTagsServiceRemote" />
+	<dubbo:reference interface="cn.vko.cms.service.remote.IObjVideoRelationServiceRemote"
+		timeout="200000" lazy="true" version="1.0" id="objVideoRelationServiceRemote" url="${video.dubbo.url}" check="false"></dubbo:reference>
+	<dubbo:reference interface="cn.vko.cms.service.remote.VideoUrlServiceRemote"
+		timeout="200000" lazy="true" version="1.0" id="videoUrlServiceRemote" url="${video.dubbo.url}" check="false"></dubbo:reference>
+	<dubbo:reference interface="cn.vko.cms.service.remote.VideoServiceRemote"
+		timeout="200000" lazy="true" version="1.0" id="videoServiceRemote" url="${video.dubbo.url}" check="false"></dubbo:reference>
+	<dubbo:reference interface="cn.vko.cms.service.remote.ChapterServiceRemote"
+		url="${video.dubbo.url}" version="1.0" timeout="20000" check="false" id="cmschapterServiceRemote" />
+	<dubbo:reference interface="cn.vko.group.service.remote.interest.InterestGroupsServiceRemote"
+		timeout="200000" lazy="true" version="1.0" id="interestGroupsServiceRemote" url="${group.dubbo.url}" check="false"></dubbo:reference>
+	<dubbo:reference interface="cn.vko.group.service.remote.classgroup.ClassGroupsServiceRemote"
+		timeout="200000" lazy="true" version="1.0" id="classGroupsServiceRemote" url="${group.dubbo.url}" check="false"></dubbo:reference>
+	<dubbo:reference interface="cn.vko.group.service.remote.GroupUserRemote"
+		timeout="200000" lazy="true" version="1.0" id="groupUserRemote" url="${group.dubbo.url}" check="false"></dubbo:reference>
+
+	<dubbo:reference interface="cn.vko.search.service.remote.GoodsSearchServiceRemote"
+		timeout="200000" lazy="true" version="1.0" id="goodsSearchServiceRemote" url="${search.dubbo.url}" check="false"></dubbo:reference>
+	<dubbo:reference interface="cn.vko.search.service.remote.IndexServiceRemote"
+	timeout="200000" lazy="true" version="1.0" id="indexServiceRemote" url="${search.dubbo.url}" check="false"></dubbo:reference>
+	
+	<dubbo:reference interface="cn.vko.goods.service.remote.GoodsServiceRemote" 
+	url="${goods.dubbo.url}" version="1.0" check="false" id="goodsServiceRemote"></dubbo:reference>
+		
+		
+	<!-- comment模块 -->
+	<dubbo:reference interface="cn.vko.comment.service.remote.IZanLogServiceRemote"
+		url="${comment.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="iZanLogServiceRemote" />
+	<dubbo:reference
+		interface="cn.vko.comment.service.remote.IObjZanStatServiceRemote"
+		url="${comment.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="iObjZanStatServiceRemote" />
+	<dubbo:reference
+		interface="cn.vko.comment.service.remote.IObjCommentServiceRemote"
+		url="${comment.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="iObjCommentServiceRemote" />
+	<dubbo:reference
+		interface="cn.vko.comment.service.remote.ISuggestServiceRemote"
+		url="${comment.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="suggestServiceRemote" />
+		
+		
+	<!--cms 临时 模块 -->
+	<dubbo:reference
+		interface="cn.vko.cms.service.remote.TeacherServiceRemote"
+		url="${cms.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="teacherServiceRemote" />
+	
+	<!-- goods -->
+	<dubbo:reference
+		interface="cn.vko.group.service.remote.GroupsStatServiceRemote"
+		url="${group.dubbo.url}" version="1.0" timeout="20000" check="false"
+		id="groupsStatServiceRemote" />
+</beans>

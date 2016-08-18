@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">  
+	
+ 
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="xiaoyuan" logger="slf4j" ></dubbo:application>
+	<dubbo:registry protocol="zookeeper" address="${zookeeper.address}"  check="false" file="dubbo.properties" />
+	 
+	<!-- 
+	<dubbo:registry address="N/A" /> 
+	 -->
+	<!-- 用dubbo协议在20884端口暴露服务 -->
+	<dubbo:protocol name="dubbo" port="20905" ></dubbo:protocol>
+	
+	
+	 <dubbo:service interface="cn.vko.xiaoyuan.service.remote.IGroupTaskServiceRemote" 
+		version="1.0" ref="groupTaskServiceImpl" timeout="5000" />
+		
+	 <dubbo:service interface="cn.vko.xiaoyuan.service.remote.IGroupTaskMediaServiceRemote" 
+		version="1.0" ref="groupTaskMediaServiceImpl" timeout="5000" />
+	 <dubbo:service interface="cn.vko.xiaoyuan.service.remote.IGroupTaskStatServiceRemote" 
+		version="1.0" ref="groupTaskStatServiceImpl" timeout="5000" />
+		
+	<dubbo:service interface="cn.vko.xiaoyuan.service.remote.ISchoolUsersServiceRemote" 
+		version="1.0" ref="schoolUsersServiceImpl" timeout="5000" />
+		
+	<dubbo:service interface="cn.vko.xiaoyuan.service.remote.ISchoolInfoServiceRemote" 
+		version="1.0" ref="schoolInfoServiceImpl" timeout="5000" />	
+
+	<dubbo:service interface="cn.vko.xiaoyuan.service.remote.IBkBookServiceRemote" 
+		version="1.0" ref="bkBookServiceImpl" timeout="5000" />	
+		
+	<dubbo:service interface="cn.vko.xiaoyuan.service.remote.IBkEditionSectionServiceRemote"
+		version="1.0" ref="bkEditionSectionServiceImpl" timeout="5000" />	
+</beans>
